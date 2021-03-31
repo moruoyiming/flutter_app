@@ -1,5 +1,8 @@
 //TODO 1.导入包。此行代码作用是导入了Material UI组件库。Material (opens new window)是一种标准的移动端和web端的视觉设计语言， Flutter默认提供了一套丰富的Material风格的UI组件。
 import 'package:flutter/material.dart';
+import 'package:flutter_app/TipRoute.dart';
+
+import 'NewRoute.dart';
 
 //TODO 2.应用入口。
 //与C/C++、Java类似，Flutter 应用中main函数为应用程序的入口。main函数中调用了runApp 方法，它的功能是启动Flutter应用。runApp它接受一个Widget参数，在本示例中它是一个MyApp对象，MyApp()是Flutter应用的根组件。
@@ -183,51 +186,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-//创建一个新的路由
-class NewRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("New Route"),
-      ),
-      body: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.pop(context, 1);
-          },
-          child: Text("This is new Route"),
-        ),
-      ),
-    );
-  }
-}
 
-class TipRoute extends StatelessWidget {
-  TipRoute({Key key, @required this.text}) : super(key: key);
 
-  final String text;
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: AppBar(
-        title: Text("提示"),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(8),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Text(text),
-              RaisedButton(
-                onPressed: () => Navigator.pop(context, "我是返回值"),
-                child: Text("返回"),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
