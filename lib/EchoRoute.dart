@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
+
 class EchoRoute extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,9 @@ class EchoRoute extends StatelessWidget{
       body: Center(
         child: TextButton(
           onPressed: () {
-            Navigator.pop(context, 1);
+            // Navigator.pop(context, 1);
+            Future<String> sss=  loadAsset();
+            print(sss.toString());
           },
           child: Text("This is new EchoRoute args="+args+wordPair.toString()),
         ),
@@ -23,4 +29,7 @@ class EchoRoute extends StatelessWidget{
     );
   }
 
+}
+Future<String> loadAsset() async {
+  return await rootBundle.loadString('assets/config.json');
 }
