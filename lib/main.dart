@@ -1,5 +1,6 @@
 //TODO 1.导入包。此行代码作用是导入了Material UI组件库。Material (opens new window)是一种标准的移动端和web端的视觉设计语言， Flutter默认提供了一套丰富的Material风格的UI组件。
 import 'package:flutter/material.dart';
+import 'package:flutter_app/EchoRoute.dart';
 import 'package:flutter_app/TipRoute.dart';
 
 import 'NewRoute.dart';
@@ -43,8 +44,22 @@ class MyApp extends StatelessWidget {
       //注册路由表
       routes: {
         "new_page": (context) => NewRoute(),
-        // "/": (context) => MyHomePage(title: 'Flutter Demo Home Page'), //注册首页路由
         "tip_page": (context) => TipRoute(text: "what is it"),
+        "echo_page": (context) => EchoRoute(),
+        "tip2": (context) {
+          return TipRoute(text: ModalRoute
+              .of(context)
+              .settings
+              .arguments);
+        },
+      },
+      //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
+      onGenerateRoute: (RouteSettings settings){
+        return MaterialPageRoute(builder: (context){
+          String routeName = settings.name;
+          // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
+          // 引导用户登录；其它情况则正常打开路由。
+        });
       },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -146,7 +161,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
             ),
             TextButton(
                 onPressed: () {
@@ -156,10 +174,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   //   return NewRoute();
                   // }));
                 },
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),
-                ),
-                child: Text("open new router")),
+                // style: TextButton.styleFrom(
+                //   textStyle: TextStyle(fontSize: 20),
+                // ),
+                child: Text("打开New页")),
             TextButton(
               onPressed: () async {
                 //打开 TipRoute ，并等待返回结果
@@ -172,7 +190,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 //输出`TipRoute`路由返回结果
                 print("路由返回值: $result3");
               },
-              child: Text("打开提示页"),
+              child: Text("打开Tip页"),
+            ),
+            TextButton(
+              onPressed: () async {
+                var result3 = await Navigator.of(context).pushNamed(
+                    "echo_page", arguments: "hi man");
+                print("路由返回值: $result3");
+              },
+              child: Text("打开Echo页"),
             ),
           ],
         ),
