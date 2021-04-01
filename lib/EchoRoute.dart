@@ -30,6 +30,8 @@ class EchoRoute extends StatelessWidget{
   }
 
 }
+
 Future<String> loadAsset() async {
   return await rootBundle.loadString('assets/config.json');
 }
+

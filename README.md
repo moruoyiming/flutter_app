@@ -80,3 +80,6 @@ Navigator 还有很多其它方法，如Navigator.replace、Navigator.popUntil�
 
 ## 路由跳转前置处理逻辑
    通过onGenerateRoute做一些全局的路由跳转前置处理逻辑
+
+## 断点调试
+   debugger(when: true);
