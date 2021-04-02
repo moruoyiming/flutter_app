@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/ButtonRoute.dart';
 import 'package:flutter_app/CupertinoUIRoute.dart';
 import 'package:flutter_app/EchoRoute.dart';
+import 'package:flutter_app/FocusTestRoute.dart';
 import 'package:flutter_app/ImageRoute.dart';
+import 'package:flutter_app/SwitchAndCheckBoxTestRoute.dart';
+import 'package:flutter_app/TextFieldRoute.dart';
 import 'package:flutter_app/TextRoute.dart';
 import 'package:flutter_app/TipRoute.dart';
 
@@ -53,6 +56,9 @@ class MyApp extends StatelessWidget {
         "text_page": (context) => TextRoute(),
         "button_page": (context) => ButtonRoute(),
         "image_page": (context) => ImageRoute(),
+        "state_page": (context) => SwitchAndCheckBoxTestRoute(),
+        "field_page": (context) => TextFieldRoute(),
+        "focus_page": (context) => FocusTestRoute(),
         "tip_page": (context) => TipRoute(text: "what is it"),
         "echo_page": (context) => EchoRoute(),
         "cuper_page": (context) => CupertinoUIRoute(),
@@ -200,6 +206,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     .pushNamed("image_page", arguments: "hi man");
               },
               child: Text("图片控件"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed("state_page", arguments: "hi man");
+              },
+              child: Text("单选开关/复选框控件"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed("field_page", arguments: "hi man");
+              },
+              child: Text("输入框及表单"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed("focus_page", arguments: "hi man");
+              },
+              child: Text("焦点设置"),
             ),
             TextButton(
               onPressed: () async {
