@@ -1,12 +1,16 @@
 //TODO 1.导入包。此行代码作用是导入了Material UI组件库。Material (opens new window)是一种标准的移动端和web端的视觉设计语言， Flutter默认提供了一套丰富的Material风格的UI组件。
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/ButtonRoute.dart';
 import 'package:flutter_app/CupertinoUIRoute.dart';
 import 'package:flutter_app/EchoRoute.dart';
 import 'package:flutter_app/FocusTestRoute.dart';
+import 'package:flutter_app/FormTestRoute.dart';
+import 'package:flutter_app/GestureRoute.dart';
 import 'package:flutter_app/ImageRoute.dart';
+import 'package:flutter_app/ProgressRoute.dart';
 import 'package:flutter_app/SwitchAndCheckBoxTestRoute.dart';
 import 'package:flutter_app/TextFieldRoute.dart';
 import 'package:flutter_app/TextRoute.dart';
@@ -62,6 +66,9 @@ class MyApp extends StatelessWidget {
         "tip_page": (context) => TipRoute(text: "what is it"),
         "echo_page": (context) => EchoRoute(),
         "cuper_page": (context) => CupertinoUIRoute(),
+        "gesture_page": (context) => GestureRoute(),
+        "form_page": (context) => FormTestRoute(),
+        "progress_page": (context) => ProgressRoute(),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
@@ -146,6 +153,18 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        leading: new IconButton(
+          onPressed: null,
+          icon: new Icon(Icons.menu),
+          tooltip: "Navigation menu",
+        ),
+        actions: <Widget>[
+          new IconButton(
+            onPressed: null,
+            icon: new Icon(Icons.search),
+            tooltip: "Search",
+          )
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -256,6 +275,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     .pushNamed("cuper_page", arguments: "hi man");
               },
               child: Text("打开CuperUI页面"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed("gesture_page", arguments: "hi man");
+              },
+              child: Text("打开gesture页面"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed("form_page", arguments: "hi man");
+              },
+              child: Text("打开form页面"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed("progress_page", arguments: "hi man");
+              },
+              child: Text("打开progress页面"),
             ),
           ],
         ),
