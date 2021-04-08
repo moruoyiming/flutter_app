@@ -3,17 +3,22 @@ import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ButtonRoute.dart';
-import 'package:flutter_app/CupertinoUIRoute.dart';
+import 'package:flutter_app/widget/ButtonRoute.dart';
+import 'package:flutter_app/widget/CupertinoUIRoute.dart';
 import 'package:flutter_app/EchoRoute.dart';
-import 'package:flutter_app/FocusTestRoute.dart';
-import 'package:flutter_app/FormTestRoute.dart';
-import 'package:flutter_app/GestureRoute.dart';
-import 'package:flutter_app/ImageRoute.dart';
-import 'package:flutter_app/ProgressRoute.dart';
-import 'package:flutter_app/SwitchAndCheckBoxTestRoute.dart';
-import 'package:flutter_app/TextFieldRoute.dart';
-import 'package:flutter_app/TextRoute.dart';
+import 'package:flutter_app/layout/AlignLayoutRoute.dart';
+import 'package:flutter_app/layout/FlexLayoutRoute.dart';
+import 'package:flutter_app/layout/FlowLayoutRoute.dart';
+import 'package:flutter_app/widget/FocusTestRoute.dart';
+import 'package:flutter_app/widget/FormTestRoute.dart';
+import 'package:flutter_app/widget/GestureRoute.dart';
+import 'package:flutter_app/widget/ImageRoute.dart';
+import 'package:flutter_app/widget/ProgressRoute.dart';
+import 'package:flutter_app/layout/RowLayoutRoute.dart';
+import 'package:flutter_app/layout/StackLayoutRoute.dart';
+import 'package:flutter_app/widget/SwitchAndCheckBoxTestRoute.dart';
+import 'package:flutter_app/widget/TextFieldRoute.dart';
+import 'package:flutter_app/widget/TextRoute.dart';
 import 'package:flutter_app/TipRoute.dart';
 
 import 'NewRoute.dart';
@@ -69,6 +74,11 @@ class MyApp extends StatelessWidget {
         "gesture_page": (context) => GestureRoute(),
         "form_page": (context) => FormTestRoute(),
         "progress_page": (context) => ProgressRoute(),
+        "row_page": (context) => RowLayoutRoute(),
+        "flex_page": (context) => FlexLayoutRoute(),
+        "flow_page": (context) => FlowLayoutRoute(),
+        "stack_page": (context) => StackLayoutRoute(),
+        "align_page": (context) => AlignLayoutRoute(),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
@@ -184,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
@@ -193,109 +203,149 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            TextButton(
-                onPressed: () {
-                  //使用路由名打开路由页
-                  Navigator.pushNamed(context, "new_page");
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //   return NewRoute();
-                  // }));
-                },
-                // style: TextButton.styleFrom(
-                //   textStyle: TextStyle(fontSize: 20),
-                // ),
-                child: Text("打开新页面")),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("text_page", arguments: "hi man");
-              },
-              child: Text("文本控件"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("button_page", arguments: "hi man");
-              },
-              child: Text("按钮控件"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("image_page", arguments: "hi man");
-              },
-              child: Text("图片控件"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("state_page", arguments: "hi man");
-              },
-              child: Text("单选开关/复选框控件"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("field_page", arguments: "hi man");
-              },
-              child: Text("输入框及表单"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("focus_page", arguments: "hi man");
-              },
-              child: Text("焦点设置"),
-            ),
-            TextButton(
-              onPressed: () async {
-                //打开 TipRoute ，并等待返回结果
-                //使用路由名打开路由页
-                var result3 = await Navigator.pushNamed(context, "tip_page");
-                // var result = await Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) {
-                //   return TipRoute(text: "我是提示XXXX");
-                // }));
-                //输出`TipRoute`路由返回结果
-                print("路由返回值: $result3");
-              },
-              child: Text("打开Tip页"),
-            ),
-            TextButton(
-              onPressed: () async {
-                var result3 = await Navigator.of(context)
-                    .pushNamed("echo_page", arguments: "hi man");
-                print("路由返回值: $result3");
-              },
-              child: Text("打开Echo页"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("cuper_page", arguments: "hi man");
-              },
-              child: Text("打开CuperUI页面"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("gesture_page", arguments: "hi man");
-              },
-              child: Text("打开gesture页面"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("form_page", arguments: "hi man");
-              },
-              child: Text("打开form页面"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed("progress_page", arguments: "hi man");
-              },
-              child: Text("打开progress页面"),
+            Wrap(
+              children: [
+                TextButton(
+                    onPressed: () {
+                      //使用路由名打开路由页
+                      Navigator.pushNamed(context, "new_page");
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      //   return NewRoute();
+                      // }));
+                    },
+                    // style: TextButton.styleFrom(
+                    //   textStyle: TextStyle(fontSize: 20),
+                    // ),
+                    child: Text("打开新页面")),
+                TextButton(
+                  onPressed: () async {
+                    //打开 TipRoute ，并等待返回结果
+                    //使用路由名打开路由页
+                    var result3 =
+                        await Navigator.pushNamed(context, "tip_page");
+                    // var result = await Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   return TipRoute(text: "我是提示XXXX");
+                    // }));
+                    //输出`TipRoute`路由返回结果
+                    print("路由返回值: $result3");
+                  },
+                  child: Text("打开Tip页"),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    var result3 = await Navigator.of(context)
+                        .pushNamed("echo_page", arguments: "hi man");
+                    print("路由返回值: $result3");
+                  },
+                  child: Text("打开Echo页"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("cuper_page", arguments: "hi man");
+                  },
+                  child: Text("打开CuperUI页面"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("text_page", arguments: "hi man");
+                  },
+                  child: Text("文本控件"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("button_page", arguments: "hi man");
+                  },
+                  child: Text("按钮控件"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("image_page", arguments: "hi man");
+                  },
+                  child: Text("图片控件"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("state_page", arguments: "hi man");
+                  },
+                  child: Text("单选开关/复选框控件"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("field_page", arguments: "hi man");
+                  },
+                  child: Text("输入框及表单"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("focus_page", arguments: "hi man");
+                  },
+                  child: Text("焦点设置"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("gesture_page", arguments: "hi man");
+                  },
+                  child: Text("打开gesture页面"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("form_page", arguments: "hi man");
+                  },
+                  child: Text("输入框即表单"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("progress_page", arguments: "hi man");
+                  },
+                  child: Text("进度指示器"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("row_page", arguments: "hi man");
+                  },
+                  child: Text("线性布局"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("flex_page", arguments: "hi man");
+                  },
+                  child: Text("弹性布局"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("flow_page", arguments: "hi man");
+                  },
+                  child: Text("流式布局"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("stack_page", arguments: "hi man");
+                  },
+                  child: Text("层叠布局"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("align_page", arguments: "hi man");
+                  },
+                  child: Text("对齐与相对定位（Align）"),
+                ),
+              ],
             ),
           ],
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/CounterWidget.dart';
 import 'package:flutter_app/ParentWidget.dart';
-import 'package:flutter_app/TapboxA.dart';
+import 'package:flutter_app/widget/TapboxA.dart';
 import 'package:flutter_app/BrigitteText.dart';
 
 class TipRoute extends StatelessWidget {
