@@ -97,7 +97,7 @@ Navigator 还有很多其它方法，如Navigator.replace、Navigator.popUntil�
 ## 布局类组件
 - [线性布局(Row和Column)](/lib/layout/RowLayoutRoute.dart)
 - [弹性布局(Flex)](/lib/layout/FlexLayoutRoute.dart)
-- [流式布局](/lib/layout/FlowLayoutRoute.dart)
+- [流式布局(Flow和Wrap)](/lib/layout/FlowLayoutRoute.dart)
 - [层叠布局(Stack、Positioneds)](/lib/layout/StackLayoutRoute.dart)
 - [对齐与相对定位(Align)](/lib/layout/AlignLayoutRoute.dart)
 
