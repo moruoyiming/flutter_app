@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/container/ConstrainedBoxRoute.dart';
+import 'package:flutter_app/container/PaddingRoute.dart';
 import 'package:flutter_app/widget/ButtonRoute.dart';
 import 'package:flutter_app/widget/CupertinoUIRoute.dart';
 import 'package:flutter_app/EchoRoute.dart';
@@ -79,6 +81,8 @@ class MyApp extends StatelessWidget {
         "flow_page": (context) => FlowLayoutRoute(),
         "stack_page": (context) => StackLayoutRoute(),
         "align_page": (context) => AlignLayoutRoute(),
+        "padding_page": (context) => PaddingRoute(),
+        "constrainedbox_page": (context) => ConstrainedBoxRoute(),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
@@ -344,6 +348,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         .pushNamed("align_page", arguments: "hi man");
                   },
                   child: Text("对齐与相对定位（Align）"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("padding_page", arguments: "hi man");
+                  },
+                  child: Text("填充（Padding）"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("constrainedbox_page", arguments: "hi man");
+                  },
+                  child: Text("ConstrainedBox"),
                 ),
               ],
             ),
