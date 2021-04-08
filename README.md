@@ -84,7 +84,17 @@ Navigator 还有很多其它方法，如Navigator.replace、Navigator.popUntil�
 ## 断点调试
    debugger(when: true);
 
-## 基础组建
+## 基础组件
+- [Button](/lib/widget/ButtonRoute.dart)
+- [Text](/lib/widget/TextRoute.dart)
+- [Image](/lib/widget/ImageRoute.dart)
+- [TextField](/lib/widget/TextFieldRoute.dart)
+- [Progress](/lib/widget/ProgressRoute.dart)
+- [FormTest](/lib/widget/FormTestRoute.dart)
+- [SwitchAndCheckBox](/lib/widget/SwitchAndCheckBoxTestRoute.dart)
+
+
+## 布局类组件
 - [线性布局(Row和Column)](/lib/layout/RowLayoutRoute.dart)
 - [弹性布局(Flex)](/lib/layout/FlexLayoutRoute.dart)
 - [流式布局](/lib/layout/FlowLayoutRoute.dart)
