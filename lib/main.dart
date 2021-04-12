@@ -177,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: new IconButton(
           onPressed: null,
           icon: new Icon(Icons.menu),
-          tooltip: "Navigation menu",
+          tooltip: "Navigation Menu",
         ),
         actions: <Widget>[
           new IconButton(
