@@ -3,11 +3,18 @@ import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/container/ClipRoute.dart';
 import 'package:flutter_app/container/ConstrainedBoxRoute.dart';
 import 'package:flutter_app/container/ContainerRoute.dart';
 import 'package:flutter_app/container/PaddingRoute.dart';
 import 'package:flutter_app/container/ScaffoldRoute.dart';
 import 'package:flutter_app/container/TransformRoute.dart';
+import 'package:flutter_app/scrollable/GridViewRoute.dart';
+import 'package:flutter_app/scrollable/InfiniteGridView.dart';
+import 'package:flutter_app/scrollable/InfiniteListView.dart';
+import 'package:flutter_app/scrollable/ListViewRoute.dart';
+import 'package:flutter_app/scrollable/ListViewRoute2.dart';
+import 'package:flutter_app/scrollable/SingleChildScrollViewRoute.dart';
 import 'package:flutter_app/widget/ButtonRoute.dart';
 import 'package:flutter_app/widget/CupertinoUIRoute.dart';
 import 'package:flutter_app/EchoRoute.dart';
@@ -89,7 +96,13 @@ class MyApp extends StatelessWidget {
         "transform_page": (context) => TransformRoute(),
         "container_page": (context) => ContainerRoute(),
         "scaffold_page": (context) => ScaffoldRoute(),
-
+        "clip_page": (context) => ClipRoute(),
+        "scroll_page": (context) => SingleChildScrollViewRoute(),
+        "listview_page": (context) => ListViewRoute(),
+        "listview2_page": (context) => ListViewRoute2(),
+        "infinite_page": (context) => InfiniteListView(),
+        "gridview_page": (context) => GridViewRoute(),
+        "gridview2_page": (context) => InfiniteGridView(),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
@@ -368,27 +381,77 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context)
                         .pushNamed("constrainedbox_page", arguments: "hi man");
                   },
-                  child: Text("ConstrainedBox"),
+                  child: Text("装饰容器(DecoratedBox)"),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context)
                         .pushNamed("transform_page", arguments: "hi man");
                   },
-                  child: Text("TransformRoute"),
+                  child: Text("变换(Transform)"),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context)
                         .pushNamed("container_page", arguments: "hi man");
                   },
-                  child: Text("ContainerRoute"),
-                ),TextButton(
+                  child: Text("组合类容器(Container)"),
+                ),
+                TextButton(
                   onPressed: () {
                     Navigator.of(context)
                         .pushNamed("scaffold_page", arguments: "hi man");
                   },
-                  child: Text("ScaffoldRoute"),
+                  child: Text("Scaffold、TabBar、底部导航"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("clip_page", arguments: "hi man");
+                  },
+                  child: Text("剪裁(Clip)"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("scroll_page", arguments: "hi man");
+                  },
+                  child: Text("SingleChildScrollView"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("listview_page", arguments: "hi man");
+                  },
+                  child: Text("ListView.builder"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("listview2_page", arguments: "hi man");
+                  },
+                  child: Text("ListView.separated"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("infinite_page", arguments: "hi man");
+                  },
+                  child: Text("无限加载列表"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("gridview_page", arguments: "hi man");
+                  },
+                  child: Text("GridView"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("gridview2_page", arguments: "hi man");
+                  },
+                  child: Text("InfiniteGridView"),
                 ),
               ],
             ),
