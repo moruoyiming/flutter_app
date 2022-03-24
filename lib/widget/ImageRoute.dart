@@ -25,6 +25,10 @@ class ImageRoute extends StatelessWidget {
               "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
               width: 100,
             ),
+            Image.network(
+              "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202003%2F29%2F20200329042030_uCcGM.thumb.400_0.gif&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650598552&t=deb9304e8d48cd4ecd270a50e7da4cce",
+              width: 100,
+            ),
           ],
         ),
       ),

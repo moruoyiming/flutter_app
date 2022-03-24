@@ -27,11 +27,13 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+#  cupertino_icons: ^1.0.2
 
 #  依赖Pub仓库
 #  新添加的依赖
   english_words: ^3.1.3
+  path_provider: ^2.0.2
+  dio: ^3.0.10
 #依赖Git：你也可以依赖存储在Git仓库中的包。如果软件包位于仓库的根目录中，请使用以下语法
 #  依赖Git
 #  pkg1:
