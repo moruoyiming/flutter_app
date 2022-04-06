@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/CounterWidget.dart';
-import 'package:flutter_app/ParentWidget.dart';
-import 'package:flutter_app/widget/TapboxA.dart';
-import 'package:flutter_app/BrigitteText.dart';
+import 'package:flutter_app/widgets/CounterWidget.dart';
+import 'package:flutter_app/widgets/ParentWidget.dart';
+import 'package:flutter_app/widgets/TapboxA.dart';
+import 'package:flutter_app/widgets/BrigitteText.dart';
 
 class TipRoute extends StatelessWidget {
   TipRoute({Key key, @required this.text}) : super(key: key);

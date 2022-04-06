@@ -85,21 +85,21 @@ Navigator 还有很多其它方法，如Navigator.replace、Navigator.popUntil�
    debugger(when: true);
 
 ## 基础组件
-- [Button](/lib/widget/ButtonRoute.dart)
-- [Text](/lib/widget/TextRoute.dart)
-- [Image](/lib/widget/ImageRoute.dart)
-- [TextField](/lib/widget/TextFieldRoute.dart)
-- [Progress](/lib/widget/ProgressRoute.dart)
-- [FormTest](/lib/widget/FormTestRoute.dart)
-- [SwitchAndCheckBox](/lib/widget/SwitchAndCheckBoxTestRoute.dart)
+- [Button](/lib/widgets/ButtonRoute.dart)
+- [Text](/lib/widgets/TextRoute.dart)
+- [Image](/lib/widgets/ImageRoute.dart)
+- [TextField](/lib/widgets/TextFieldRoute.dart)
+- [Progress](/lib/widgets/ProgressRoute.dart)
+- [FormTest](/lib/widgets/FormTestRoute.dart)
+- [SwitchAndCheckBox](/lib/widgets/SwitchAndCheckBoxTestRoute.dart)
 
 
 ## 布局类组件
-- [线性布局(Row和Column)](/lib/layout/RowLayoutRoute.dart)
-- [弹性布局(Flex)](/lib/layout/FlexLayoutRoute.dart)
-- [流式布局(Flow和Wrap)](/lib/layout/FlowLayoutRoute.dart)
-- [层叠布局(Stack、Positioneds)](/lib/layout/StackLayoutRoute.dart)
-- [对齐与相对定位(Align)](/lib/layout/AlignLayoutRoute.dart)
+- [线性布局(Row和Column)](/lib/widgets/layout/RowLayoutRoute.dart)
+- [弹性布局(Flex)](/lib/widgets/layout/FlexLayoutRoute.dart)
+- [流式布局(Flow和Wrap)](/lib/widgets/layout/FlowLayoutRoute.dart)
+- [层叠布局(Stack、Positioneds)](/lib/widgets/layout/StackLayoutRoute.dart)
+- [对齐与相对定位(Align)](/lib/widgets/layout/AlignLayoutRoute.dart)
 
 ## 可滑动组件
 
