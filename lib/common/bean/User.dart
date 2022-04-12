@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:json_annotation/json_annotation.dart';
+
 // user.g.dart 将在我们运行生成命令后自动生成
 // part 'user.g.dart';
 ///这个标注是告诉生成器，这个类是需要生成Model类的
@@ -23,7 +24,7 @@ class User {
   what() {
     User userBean = User("Jian", "798774875@qq.com");
     String jsons = json.encode(userBean);
-    Map userMap = json.decode(jsons);
+    Map<String, dynamic> userMap = json.decode(jsons);
     var user = User.fromJson(userMap);
     print('Howdy, ${user.name}!');
     print('We sent the verification link to ${user.email}.');

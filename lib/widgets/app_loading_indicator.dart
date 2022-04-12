@@ -29,15 +29,14 @@ const Color darkColor = CupertinoDynamicColor.withBrightness(
 ///  * <https://developer.apple.com/ios/human-interface-guidelines/controls/progress-indicators/#activity-indicators>
 class AppActivityIndicator extends StatefulWidget {
   /// Creates an iOS-style activity indicator that spins clockwise.
-  const AppActivityIndicator({
-    Key key,
-    this.animating = true,
-    this.radius = _kDefaultIndicatorRadius,
-    this.indicatorColor = _kActiveTickColor
-  }) : assert(animating != null),
+  const AppActivityIndicator(
+      {this.animating = true,
+      this.radius = _kDefaultIndicatorRadius,
+      this.indicatorColor = _kActiveTickColor})
+      : assert(animating != null),
         assert(radius != null),
         assert(radius > 0),
-        super(key: key);
+        super();
 
   /// Whether the activity indicator is running its animation.
   ///
@@ -56,9 +55,9 @@ class AppActivityIndicator extends StatefulWidget {
   _AppActivityIndicatorState createState() => _AppActivityIndicatorState();
 }
 
-
-class _AppActivityIndicatorState extends State<AppActivityIndicator> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+class _AppActivityIndicatorState extends State<AppActivityIndicator>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -68,8 +67,7 @@ class _AppActivityIndicatorState extends State<AppActivityIndicator> with Single
       vsync: this,
     );
 
-    if (widget.animating)
-      _controller.repeat();
+    if (widget.animating) _controller.repeat();
   }
 
   @override
@@ -97,7 +95,8 @@ class _AppActivityIndicatorState extends State<AppActivityIndicator> with Single
       child: CustomPaint(
         painter: _AppActivityIndicatorPainter(
           position: _controller,
-          activeColor: CupertinoDynamicColor.resolve(widget.indicatorColor, context),
+          activeColor:
+              CupertinoDynamicColor.resolve(widget.indicatorColor, context),
           radius: widget.radius,
         ),
       ),
@@ -110,21 +109,34 @@ const int _kTickCount = 12;
 
 // Alpha values extracted from the native component (for both dark and light mode).
 // The list has a length of 12.
-const List<int> _alphaValues = <int>[147, 131, 114, 97, 81, 64, 47, 47, 47, 47, 47, 47];
+const List<int> _alphaValues = <int>[
+  147,
+  131,
+  114,
+  97,
+  81,
+  64,
+  47,
+  47,
+  47,
+  47,
+  47,
+  47
+];
 
 class _AppActivityIndicatorPainter extends CustomPainter {
   _AppActivityIndicatorPainter({
-    @required this.position,
-    @required this.activeColor,
-    double radius,
-  }) : tickFundamentalRRect = RRect.fromLTRBXY(
-    -radius,
-    radius / _kDefaultIndicatorRadius,
-    -radius / 2.0,
-    -radius / _kDefaultIndicatorRadius,
-    radius / _kDefaultIndicatorRadius,
-    radius / _kDefaultIndicatorRadius,
-  ),
+    required this.position,
+    required this.activeColor,
+    required double radius,
+  })  : tickFundamentalRRect = RRect.fromLTRBXY(
+          -radius,
+          radius / _kDefaultIndicatorRadius,
+          -radius / 2.0,
+          -radius / _kDefaultIndicatorRadius,
+          radius / _kDefaultIndicatorRadius,
+          radius / _kDefaultIndicatorRadius,
+        ),
         super(repaint: position);
 
   final Animation<double> position;
@@ -140,7 +152,7 @@ class _AppActivityIndicatorPainter extends CustomPainter {
 
     final int activeTick = (_kTickCount * position.value).floor();
 
-    for (int i = 0; i < _kTickCount; ++ i) {
+    for (int i = 0; i < _kTickCount; ++i) {
       final int t = (i + activeTick) % _kTickCount;
       paint.color = activeColor.withAlpha(_alphaValues[t]);
       canvas.drawRRect(tickFundamentalRRect, paint);
@@ -152,6 +164,7 @@ class _AppActivityIndicatorPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_AppActivityIndicatorPainter oldPainter) {
-    return oldPainter.position != position || oldPainter.activeColor != activeColor;
+    return oldPainter.position != position ||
+        oldPainter.activeColor != activeColor;
   }
 }

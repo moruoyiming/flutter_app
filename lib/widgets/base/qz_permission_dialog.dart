@@ -52,6 +52,16 @@ class QZPermissionDialog {
           customContentWidget: getContent(type),
           rightCallback: rightCallBack,
           leftCallback: leftCallBack,
+          marginlr: 0,
+          imageHintText: '',
+          confirmColor: null,
+          titleMarge: null,
+          contentMarge: null,
+          image: '',
+          height: null,
+          cancelColor: null,
+          dismissCallback: null,
+          contentTextStyle: null,
         );
       },
     );

@@ -34,15 +34,16 @@ class CommonAppBar {
   CommonAppBar(this.title,
       {this.titleColor = _DEFAULT_TITLE_TEXT_COLOR,
       this.titleTextSize = _DEFAULT_TITLE_TEXT_SIZE,
-      this.leftCallBack,
+      required this.leftCallBack,
       this.backgroundColor = _DEFAULT_TITLE_BG_COLOR,
-      this.backIconRes,
-      this.actionList});
+      required this.backIconRes,
+      required this.actionList});
 
   AppBar defaultBar(
-      {Key key, BuildContext context, String backPath, double elevation}) {
+      {required BuildContext context,
+      required String backPath,
+      required double elevation}) {
     return AppBar(
-      key: key,
       title: Text(
         this.title,
         style: TextStyle(
@@ -76,9 +77,10 @@ class CommonAppBar {
   }
 
   AppBar homeBar(
-      {Key key, BuildContext context, String backPath, double elevation}) {
+      {required BuildContext context,
+      required String backPath,
+      required double elevation}) {
     return AppBar(
-      key: key,
       title: Text(
         this.title,
         style: TextStyle(

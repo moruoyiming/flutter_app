@@ -12,7 +12,7 @@ class ScaffoldRoute extends StatefulWidget {
 
 class _ScaffoldRouteState extends State<ScaffoldRoute> with SingleTickerProviderStateMixin {
   int _selectedIndex = 1;
-  TabController _tabController; //需要定义一个Controller
+  late TabController _tabController; //需要定义一个Controller
   List tabs = ["新闻", "历史", "图片"];
 
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TapboxB extends StatelessWidget {
-  TapboxB({Key key, this.active: false, @required this.onChanged})
-      : super(key: key);
+  TapboxB({ this.active: false, required this.onChanged})
+      : super();
 
   final bool active;
   final ValueChanged<bool> onChanged;

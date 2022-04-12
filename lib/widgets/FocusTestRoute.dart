@@ -8,7 +8,7 @@ class FocusTestRoute extends StatefulWidget {
 class _FocusTestRouteState extends State<FocusTestRoute> {
   FocusNode focusNode1 = new FocusNode();
   FocusNode focusNode2 = new FocusNode();
-  FocusScopeNode focusScopeNode;
+  late FocusScopeNode focusScopeNode;
 
   @override
   Widget build(BuildContext context) {

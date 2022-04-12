@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 class BrigitteText extends StatelessWidget {
   const BrigitteText({
-    Key key,
-    @required this.text,
+    required this.text,
     this.backgroundColor: Colors.grey,
-  }) : super(key: key);
+  }) : super();
   final String text;
   final Color backgroundColor;
 

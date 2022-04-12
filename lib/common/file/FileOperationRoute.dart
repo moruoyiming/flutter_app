@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FileOperationRoute extends StatefulWidget {
-  FileOperationRoute({Key key}) : super(key: key);
+  FileOperationRoute() : super();
 
   @override
   _FileOperationRouteState createState() => _FileOperationRouteState();

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class CounterWidget extends StatefulWidget {
   const CounterWidget({
-    Key key,
     this.initValue: 0
   });
 
@@ -13,7 +12,7 @@ class CounterWidget extends StatefulWidget {
 }
 
 class _CounterWidgetState extends State<CounterWidget> {
-  int _counter;
+  late int _counter;
 
   @override
   void initState() {

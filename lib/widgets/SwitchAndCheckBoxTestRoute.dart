@@ -34,7 +34,7 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
               activeColor: Colors.red, //选中时的颜色
               onChanged: (value) {
                 setState(() {
-                  _checkboxSelected = value;
+                  _checkboxSelected = value!;
                 });
               },
             )

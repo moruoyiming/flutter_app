@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 //TapboxA 管理自身状态.
 class TapboxA extends StatefulWidget {
-  TapboxA({Key key}) : super(key: key);
+  TapboxA() : super();
 
   @override
   _TapboxAState createState() {

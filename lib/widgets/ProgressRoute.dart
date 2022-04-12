@@ -7,7 +7,7 @@ class ProgressRoute extends StatefulWidget {
 
 class _ProgressRouteState extends State<ProgressRoute>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {
