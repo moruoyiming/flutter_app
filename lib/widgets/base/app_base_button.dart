@@ -174,7 +174,7 @@ Widget getAutoButton(String text, bool isEnable, double width, double height,
 
 /// 按钮 主题色边框
 Widget getAutoButtonWithBorder(String text, double width, double height,
-    double fontSize, FontWeight fontWeight, Function _callback, bool isEnable) {
+    double fontSize, FontWeight fontWeight, VoidCallback _callback, bool isEnable) {
   return isEnable
       ? Container(
           height: height,

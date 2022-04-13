@@ -6,7 +6,7 @@ class QZLocalStorage {
   factory QZLocalStorage() => _getInstance();
 
   static QZLocalStorage get instance => _getInstance();
-  static QZLocalStorage _instance;
+  static late QZLocalStorage _instance;
 
   static QZLocalStorage _getInstance() {
     if (_instance == null) {
@@ -19,7 +19,7 @@ class QZLocalStorage {
   QZLocalStorage._internal();
 
   ///持有对象
-  SharedPreferences _sharedPrefs;
+  late SharedPreferences _sharedPrefs;
 
   /// 初始化方法
   _configUtils() {
@@ -51,7 +51,7 @@ class QZLocalStorage {
     return result;
   }
 
-  String getString(String key) {
+  String? getString(String key) {
     if (_sharedPrefs.containsKey(key)) {
       return _sharedPrefs.getString(key);
     }
@@ -82,7 +82,7 @@ class QZLocalStorage {
     return false;
   }
 
-  bool getBoolDefaul(String key,bool defaultBool) {
+  bool getBoolDefaul(String key, bool defaultBool) {
     if (_sharedPrefs.containsKey(key)) {
       return _sharedPrefs.getBool(key);
     }
