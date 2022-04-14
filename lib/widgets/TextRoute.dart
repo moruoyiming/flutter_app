@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 class TextRoute extends StatelessWidget {
+  var canpop;
+
   @override
   Widget build(BuildContext context) {
+    canpop = ModalRoute.of(context)?.canPop;
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          color: Colors.red,
+          onPressed: _onPressed,
+        ),
         title: Text("TextRoute"),
       ),
       body: Center(
@@ -68,5 +75,9 @@ class TextRoute extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onPressed() {
+    print("object" + canpop);
   }
 }

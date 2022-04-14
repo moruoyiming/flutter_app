@@ -14,18 +14,25 @@ class _HttpTestRouteState extends State<HttpTestRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          ElevatedButton(
-            child: Text("获取百度首页"),
-            onPressed: _loading ? null : request,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width - 50.0,
-            child: Text(_text.replaceAll(RegExp(r"\s"), "")),
-          )
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("http"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: ElevatedButton(
+                child: Text("获取百度首页"),
+                onPressed: _loading ? null : request,
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width - 50.0,
+              child: Text(_text.replaceAll(RegExp(r"\s"), "")),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -43,18 +50,18 @@ class _HttpTestRouteState extends State<HttpTestRoute> {
       httpClient.addCredentials(
           url, "admin", HttpClientBasicCredentials("username", "password"));
       //设置代理策略
-      httpClient.findProxy = (url) {
-        return "PROXY 192.168.1.2:8888";
-      };
+      // httpClient.findProxy = (url) {
+      //   return "PROXY 192.168.1.2:8888";
+      // };
       //自签名证书 校验逻辑
-      String PEM = "XXXXX"; //可以从文件读取
-      httpClient.badCertificateCallback =
-          (X509Certificate cert, String host, int port) {
-        if (cert.pem == PEM) {
-          return true; //证书一致，则允许发送数据
-        }
-        return false;
-      };
+      // String PEM = "XXXXX"; //可以从文件读取
+      // httpClient.badCertificateCallback =
+      //     (X509Certificate cert, String host, int port) {
+      //   if (cert.pem == PEM) {
+      //     return true; //证书一致，则允许发送数据
+      //   }
+      //   return false;
+      // };
       //打开Http连接
       HttpClientRequest request = await httpClient.getUrl(url);
       //使用iPhone的UA

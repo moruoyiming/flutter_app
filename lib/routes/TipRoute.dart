@@ -5,7 +5,7 @@ import 'package:flutter_app/widgets/TapboxA.dart';
 import 'package:flutter_app/widgets/BrigitteText.dart';
 
 class TipRoute extends StatelessWidget {
-  TipRoute({required this.text}) : super();
+  TipRoute({required this.text, Key? key}) : super(key: key);
 
   final String text;
 
