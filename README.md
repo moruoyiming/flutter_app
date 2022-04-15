@@ -85,13 +85,13 @@ Navigator 还有很多其它方法，如Navigator.replace、Navigator.popUntil�
    debugger(when: true);
 
 ## 基础组件
-- [Button](/lib/widgets/ButtonRoute.dart)
-- [Text](/lib/widgets/TextRoute.dart)
-- [Image](/lib/widgets/ImageRoute.dart)
-- [TextField](/lib/widgets/TextFieldRoute.dart)
-- [Progress](/lib/widgets/ProgressRoute.dart)
-- [FormTest](/lib/widgets/FormTestRoute.dart)
-- [SwitchAndCheckBox](/lib/widgets/SwitchAndCheckBoxTestRoute.dart)
+- [Button](/lib/routes/ButtonRoute.dart)
+- [Text](/lib/routes/TextRoute.dart)
+- [Image](/lib/routes/ImageRoute.dart)
+- [TextField](/lib/routes/TextFieldRoute.dart)
+- [Progress](/lib/routes/ProgressRoute.dart)
+- [FormTest](/lib/routes/FormTestRoute.dart)
+- [SwitchAndCheckBox](/lib/routes/SwitchAndCheckBoxTestRoute.dart)
 
 
 ## 布局类组件

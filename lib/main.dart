@@ -16,27 +16,28 @@ import 'package:flutter_app/widgets/scrollable/InfiniteListView.dart';
 import 'package:flutter_app/widgets/scrollable/ListViewRoute.dart';
 import 'package:flutter_app/widgets/scrollable/ListViewRoute2.dart';
 import 'package:flutter_app/widgets/scrollable/SingleChildScrollViewRoute.dart';
-import 'package:flutter_app/widgets/ButtonRoute.dart';
-import 'package:flutter_app/widgets/CupertinoUIRoute.dart';
+import 'package:flutter_app/routes/ButtonRoute.dart';
+import 'package:flutter_app/routes/CupertinoUIRoute.dart';
 import 'package:flutter_app/routes/EchoRoute.dart';
 import 'package:flutter_app/widgets/layout/AlignLayoutRoute.dart';
 import 'package:flutter_app/widgets/layout/FlexLayoutRoute.dart';
 import 'package:flutter_app/widgets/layout/FlowLayoutRoute.dart';
-import 'package:flutter_app/widgets/FocusTestRoute.dart';
-import 'package:flutter_app/widgets/FormTestRoute.dart';
-import 'package:flutter_app/widgets/GestureRoute.dart';
-import 'package:flutter_app/widgets/ImageRoute.dart';
-import 'package:flutter_app/widgets/ProgressRoute.dart';
+import 'package:flutter_app/routes/FocusTestRoute.dart';
+import 'package:flutter_app/routes/FormTestRoute.dart';
+import 'package:flutter_app/routes/GestureRoute.dart';
+import 'package:flutter_app/routes/ImageRoute.dart';
+import 'package:flutter_app/routes/ProgressRoute.dart';
 import 'package:flutter_app/widgets/layout/RowLayoutRoute.dart';
 import 'package:flutter_app/widgets/layout/StackLayoutRoute.dart';
-import 'package:flutter_app/widgets/SwitchAndCheckBoxTestRoute.dart';
-import 'package:flutter_app/widgets/TextFieldRoute.dart';
-import 'package:flutter_app/widgets/TextRoute.dart';
+import 'package:flutter_app/routes/SwitchAndCheckBoxTestRoute.dart';
+import 'package:flutter_app/routes/TextFieldRoute.dart';
+import 'package:flutter_app/routes/TextRoute.dart';
 import 'package:flutter_app/routes/TipRoute.dart';
 import 'package:flutter_app/common/file/FileOperationRoute.dart';
 import 'package:flutter_app/common/net/HttpTestRoute.dart';
 import 'package:flutter_app/common/net/FutureBuilderRoute.dart';
 import 'routes/NewRoute.dart';
+import 'package:flutter_app/routes/ShoppingListItem.dart';
 
 //TODO 2.应用入口。
 //与C/C++、Java类似，Flutter 应用中main函数为应用程序的入口。main函数中调用了runApp 方法，它的功能是启动Flutter应用。runApp它接受一个Widget参数，在本示例中它是一个MyApp对象，MyApp()是Flutter应用的根组件。
@@ -109,6 +110,13 @@ class MyApp extends StatelessWidget {
         "file_page": (context) => FileOperationRoute(),
         "net_page": (context) => HttpTestRoute(),
         "future_page": (context) => FutureBuilderRoute(),
+        "shop_page": (context) => ShoppingList(
+              products: [
+                Product(name: 'Eggs'),
+                Product(name: 'Flour'),
+                Product(name: 'Chocolate chips'),
+              ],
+            ),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
@@ -479,6 +487,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         .pushNamed("future_page", arguments: "hi man");
                   },
                   child: Text("Future"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("shop_page", arguments: "hi man");
+                  },
+                  child: Text("Shop"),
                 ),
               ],
             ),
