@@ -28,5 +28,6 @@ class User {
     var user = User.fromJson(userMap);
     print('Howdy, ${user.name}!');
     print('We sent the verification link to ${user.email}.');
+    print('Howdy, ${userMap['name']}!');
   }
 }
