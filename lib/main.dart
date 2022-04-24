@@ -2,7 +2,9 @@
 import 'dart:developer';
 import 'dart:ffi';
 
+import 'package:css_colors/css_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/routes/LaunchUrlRoute.dart';
 import 'package:flutter_app/widgets/container/ClipRoute.dart';
 import 'package:flutter_app/widgets/container/ConstrainedBoxRoute.dart';
 import 'package:flutter_app/widgets/container/ContainerRoute.dart';
@@ -121,6 +123,7 @@ class MyApp extends StatelessWidget {
             ),
         "animation_page": (context) => StaggerDemo(),
         "lighton_page": (context) => LightonGestureRoute(),
+        "launch_page": (context) => LaunchUrlRoute(),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
@@ -209,6 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: null,
           icon: new Icon(Icons.menu),
           tooltip: "Navigation Menu",
+          color: CSSColors.yellow,
         ),
         actions: <Widget>[
           new IconButton(
@@ -513,7 +517,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   child: Text("LightONOrOFF"),
                 ),
-
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("launch_page", arguments: "hi man");
+                  },
+                  child: Text("Launch Url"),
+                ),
               ],
             ),
           ],
