@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:developer' as developer;
 
 class ImageRoute extends StatelessWidget {
   @override
@@ -33,5 +35,20 @@ class ImageRoute extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /**
+   * 打印log日志
+   */
+  void println() {
+    stderr.write("stderr print me");
+    stdout.write("stdout print me");
+    developer.log('log me', name: 'my.app.category');
+    developer.log('log me 1', name: 'my.other.category');
+    developer.log('log me 2', name: 'my.other.category');
+  }
+
+  void someFunction(double offset) {
+    developer.debugger(when: offset > 30.0);
   }
 }
