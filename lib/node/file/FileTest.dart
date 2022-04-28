@@ -39,4 +39,17 @@ void main() async {
   } catch (e) {
     print(e.toString());
   }
+
+  const showLineNumbers = true;
+  var lineNumber = 1;
+  var stream = File('quotes.txt').openRead();
+  stream
+      .transform(utf8.decoder)
+      .transform(const LineSplitter())
+      .forEach((line) {
+    if (showLineNumbers) {
+      stdout.write('${lineNumber++} ');
+    }
+    stdout.writeln(line);
+  });
 }
