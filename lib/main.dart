@@ -1,10 +1,12 @@
 //TODO 1.导入包。此行代码作用是导入了Material UI组件库。Material (opens new window)是一种标准的移动端和web端的视觉设计语言， Flutter默认提供了一套丰富的Material风格的UI组件。
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:css_colors/css_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/routes/LaunchUrlRoute.dart';
+import 'package:flutter_app/widgets/RoundedRectangleBorder.dart';
+import 'package:flutter_app/widgets/TapboxA.dart';
+import 'package:flutter_app/widgets/TapboxB.dart';
 import 'package:flutter_app/widgets/container/ClipRoute.dart';
 import 'package:flutter_app/widgets/container/ConstrainedBoxRoute.dart';
 import 'package:flutter_app/widgets/container/ContainerRoute.dart';
@@ -125,6 +127,8 @@ class MyApp extends StatelessWidget {
         "animation_page": (context) => StaggerDemo(),
         "lighton_page": (context) => LightonGestureRoute(),
         "launch_page": (context) => LaunchUrlRoute(),
+        "tap_page": (context) => TapboxA(),
+        "tap2_page": (context) => RoundedRectangle(),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
@@ -226,315 +230,333 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Wrap(
-              children: [
-                TextButton(
-                    onPressed: () {
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          primary: true,
+          child: Column(
+            // Column is also a layout widget. It takes a list of children and
+            // arranges them vertically. By default, it sizes itself to fit its
+            // children horizontally, and tries to be as tall as its parent.
+            //
+            // Invoke "debug painting" (press "p" in the console, choose the
+            // "Toggle Debug Paint" action from the Flutter Inspector in Android
+            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+            // to see the wireframe for each widget.
+            //
+            // Column has various properties to control how it sizes itself and
+            // how it positions its children. Here we use mainAxisAlignment to
+            // center the children vertically; the main axis here is the vertical
+            // axis because Columns are vertical (the cross axis would be
+            // horizontal).
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              // Text(
+              //   'You have pushed the button this many times:',
+              // ),
+              // Text(
+              //   '$_counter',
+              //   style: Theme.of(context).textTheme.headline4,
+              // ),
+              Wrap(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        //使用路由名打开路由页
+                        Navigator.pushNamed(context, "new_page");
+                        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        //   return NewRoute();
+                        // }));
+                      },
+                      // style: TextButton.styleFrom(
+                      //   textStyle: TextStyle(fontSize: 20),
+                      // ),
+                      child: Text("打开新页面")),
+                  TextButton(
+                    onPressed: () async {
+                      //打开 TipRoute ，并等待返回结果
                       //使用路由名打开路由页
-                      Navigator.pushNamed(context, "new_page");
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      //   return NewRoute();
+                      var result3 =
+                      await Navigator.pushNamed(context, "tip_page");
+                      // var result = await Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) {
+                      //   return TipRoute(text: "我是提示XXXX");
                       // }));
+                      //输出`TipRoute`路由返回结果
+                      print("路由返回值: $result3");
                     },
-                    // style: TextButton.styleFrom(
-                    //   textStyle: TextStyle(fontSize: 20),
-                    // ),
-                    child: Text("打开新页面")),
-                TextButton(
-                  onPressed: () async {
-                    //打开 TipRoute ，并等待返回结果
-                    //使用路由名打开路由页
-                    var result3 =
-                        await Navigator.pushNamed(context, "tip_page");
-                    // var result = await Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) {
-                    //   return TipRoute(text: "我是提示XXXX");
-                    // }));
-                    //输出`TipRoute`路由返回结果
-                    print("路由返回值: $result3");
-                  },
-                  child: Text("打开Tip页"),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    var result3 = await Navigator.of(context)
-                        .pushNamed("echo_page", arguments: "hi man");
-                    print("路由返回值: $result3");
-                  },
-                  child: Text("打开Echo页"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("cuper_page", arguments: "hi man");
-                  },
-                  child: Text("打开CuperUI页面"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("text_page", arguments: "hi man");
-                  },
-                  child: Text("文本控件"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("button_page", arguments: "hi man");
-                  },
-                  child: Text("按钮控件"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("image_page", arguments: "hi man");
-                  },
-                  child: Text("图片控件"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("state_page", arguments: "hi man");
-                  },
-                  child: Text("单选开关/复选框控件"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("field_page", arguments: "hi man");
-                  },
-                  child: Text("输入框及表单"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("focus_page", arguments: "hi man");
-                  },
-                  child: Text("焦点设置"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("gesture_page", arguments: "hi man");
-                  },
-                  child: Text("打开gesture页面"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("form_page", arguments: "hi man");
-                  },
-                  child: Text("输入框即表单"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("progress_page", arguments: "hi man");
-                  },
-                  child: Text("进度指示器"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("row_page", arguments: "hi man");
-                  },
-                  child: Text("线性布局"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("flex_page", arguments: "hi man");
-                  },
-                  child: Text("弹性布局"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("flow_page", arguments: "hi man");
-                  },
-                  child: Text("流式布局"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("stack_page", arguments: "hi man");
-                  },
-                  child: Text("层叠布局"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("align_page", arguments: "hi man");
-                  },
-                  child: Text("对齐与相对定位（Align）"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("padding_page", arguments: "hi man");
-                  },
-                  child: Text("填充（Padding）"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("constrainedbox_page", arguments: "hi man");
-                  },
-                  child: Text("装饰容器(DecoratedBox)"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("transform_page", arguments: "hi man");
-                  },
-                  child: Text("变换(Transform)"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("container_page", arguments: "hi man");
-                  },
-                  child: Text("组合类容器(Container)"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("scaffold_page", arguments: "hi man");
-                  },
-                  child: Text("Scaffold、TabBar、底部导航"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("clip_page", arguments: "hi man");
-                  },
-                  child: Text("剪裁(Clip)"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("scroll_page", arguments: "hi man");
-                  },
-                  child: Text("SingleChildScrollView"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("listview_page", arguments: "hi man");
-                  },
-                  child: Text("ListView.builder"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("listview2_page", arguments: "hi man");
-                  },
-                  child: Text("ListView.separated"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("infinite_page", arguments: "hi man");
-                  },
-                  child: Text("无限加载列表"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("gridview_page", arguments: "hi man");
-                  },
-                  child: Text("GridView"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("gridview2_page", arguments: "hi man");
-                  },
-                  child: Text("InfiniteGridView"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("file_page", arguments: "hi man");
-                  },
-                  child: Text("FilePage"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("net_page", arguments: "hi man");
-                  },
-                  child: Text("NetWork"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("future_page", arguments: "hi man");
-                  },
-                  child: Text("Future"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("shop_page", arguments: "hi man");
-                  },
-                  child: Text("Shop"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("animation_page", arguments: "hi man");
-                  },
-                  child: Text("Animation"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("lighton_page", arguments: "hi man");
-                  },
-                  child: Text("LightONOrOFF"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("launch_page", arguments: "hi man");
-                  },
-                  child: Text("Launch Url"),
-                ),
-              ],
-            ),
-          ],
+                    child: Text("Tip"),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      var result3 = await Navigator.of(context)
+                          .pushNamed("echo_page", arguments: "hi man");
+                      print("路由返回值: $result3");
+                    },
+                    child: Text("Echo"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("cuper_page", arguments: "hi man");
+                    },
+                    child: Text("CuperUI"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("text_page", arguments: "hi man");
+                    },
+                    child: Text("文本控件"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("button_page", arguments: "hi man");
+                    },
+                    child: Text("按钮控件"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("image_page", arguments: "hi man");
+                    },
+                    child: Text("图片控件"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("state_page", arguments: "hi man");
+                    },
+                    child: Text("单选开关/复选框控件"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("field_page", arguments: "hi man");
+                    },
+                    child: Text("输入框及表单"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("focus_page", arguments: "hi man");
+                    },
+                    child: Text("焦点设置"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("gesture_page", arguments: "hi man");
+                    },
+                    child: Text("打开gesture页面"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("form_page", arguments: "hi man");
+                    },
+                    child: Text("输入框即表单"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("progress_page", arguments: "hi man");
+                    },
+                    child: Text("进度指示器"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("row_page", arguments: "hi man");
+                    },
+                    child: Text("线性布局"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("flex_page", arguments: "hi man");
+                    },
+                    child: Text("弹性布局"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("flow_page", arguments: "hi man");
+                    },
+                    child: Text("流式布局"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("stack_page", arguments: "hi man");
+                    },
+                    child: Text("层叠布局"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("align_page", arguments: "hi man");
+                    },
+                    child: Text("对齐与相对定位（Align）"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("padding_page", arguments: "hi man");
+                    },
+                    child: Text("填充（Padding）"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("constrainedbox_page", arguments: "hi man");
+                    },
+                    child: Text("装饰容器(DecoratedBox)"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("transform_page", arguments: "hi man");
+                    },
+                    child: Text("变换(Transform)"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("container_page", arguments: "hi man");
+                    },
+                    child: Text("组合类容器(Container)"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("scaffold_page", arguments: "hi man");
+                    },
+                    child: Text("Scaffold、TabBar、底部导航"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("clip_page", arguments: "hi man");
+                    },
+                    child: Text("剪裁(Clip)"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("scroll_page", arguments: "hi man");
+                    },
+                    child: Text("SingleChildScrollView"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("listview_page", arguments: "hi man");
+                    },
+                    child: Text("ListView.builder"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("listview2_page", arguments: "hi man");
+                    },
+                    child: Text("ListView.separated"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("infinite_page", arguments: "hi man");
+                    },
+                    child: Text("无限加载列表"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("gridview_page", arguments: "hi man");
+                    },
+                    child: Text("GridView"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("gridview2_page", arguments: "hi man");
+                    },
+                    child: Text("InfiniteGridView"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("file_page", arguments: "hi man");
+                    },
+                    child: Text("FilePage"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("net_page", arguments: "hi man");
+                    },
+                    child: Text("NetWork"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("future_page", arguments: "hi man");
+                    },
+                    child: Text("Future"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("shop_page", arguments: "hi man");
+                    },
+                    child: Text("Shop"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("animation_page", arguments: "hi man");
+                    },
+                    child: Text("Animation"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("lighton_page", arguments: "hi man");
+                    },
+                    child: Text("LightONOrOFF"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("launch_page", arguments: "hi man");
+                    },
+                    child: Text("Launch Url"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("tap_page", arguments: "hi man");
+                    },
+                    child: Text("Tapbox"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed("tap2_page", arguments: "hi man");
+                    },
+                    child: Text("Shape"),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -30,7 +30,7 @@ class _TapboxAState extends State<TapboxA> {
             style: new TextStyle(fontSize: 32.0, color: Colors.white),
           ),
         ),
-        width: 200.0,
+        width: 600.0,
         height: 40.0,
         decoration: new BoxDecoration(
           color: _active ? Colors.lightGreen[700] : Colors.grey[600],
