@@ -128,7 +128,7 @@ class MyApp extends StatelessWidget {
         "lighton_page": (context) => LightonGestureRoute(),
         "launch_page": (context) => LaunchUrlRoute(),
         "tap_page": (context) => TapboxA(),
-        "tap2_page": (context) => RoundedRectangle(),
+        "tap2_page": (context) => CustomShapeWidget(),
       },
       // //打开命名路由时可能会被调用 如果指定的路由名在路由表中已注册，则会调用路由表中的builder函数来生成路由组件；如果路由表中没有注册，才会调用onGenerateRoute来生成路由
       // onGenerateRoute: (RouteSettings settings){
